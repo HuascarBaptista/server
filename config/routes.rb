@@ -1,5 +1,18 @@
 ServerAti::Application.routes.draw do
-  resources :eventos
+  resources :eventos do
+		
+			collection do
+	
+				get 'mes' => 'eventos#mes'
+				get 'dia' => 'eventos#dia'
+				get 'semana' => 'eventos#semana'
+				get 'dias' => 'eventos#dias'
+				
+			end
+			
+		
+	
+	end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

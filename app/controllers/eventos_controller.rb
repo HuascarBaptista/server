@@ -80,4 +80,39 @@ class EventosController < ApplicationController
       format.json { head :ok }
     end
   end
+  def mes
+  
+	@events = Evento.where("strftime('%m',fecha)=?",params[:id]).order('fecha');
+	respond_to do |format|
+		format.html # new.html.erb
+		format.json  { render :json => @events }
+	end
+	
+  end
+  def semana
+  
+	@events = Evento.where("strftime('%W',fecha)=?",params[:id]).order('fecha');
+	respond_to do |format|
+		format.html # new.html.erb
+		format.json  { render :json => @events }
+	end
+	
+  end
+  def dia
+  
+	@events = Evento.where("strftime('%d',fecha)=?",params[:id]).order('fecha');
+	respond_to do |format|
+		format.html # new.html.erb
+		format.json  { render :json => @events }
+	end
+	
+  end
+  def dias
+  
+	@events = Evento.where("julianday(fecha)-julianday('now') between 0 and 7");
+	respond_to do |format|
+		format.html # new.html.erb
+		format.json  { render :json => @events }
+	end
+	end
 end
